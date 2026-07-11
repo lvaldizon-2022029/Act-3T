@@ -1,4 +1,4 @@
-import { Tienda } from "./tienda";
+import { Tienda } from "./servicios/tienda";
 
 async function ejecutar(): Promise<void> {
   const tienda = new Tienda();

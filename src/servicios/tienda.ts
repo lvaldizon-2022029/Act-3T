@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import { dirname } from "node:path";
-import { Cliente, Pedido, Producto } from "./modelos";
+import { Cliente, Pedido, Producto } from "../modelos/entidades";
 
 export class Tienda {
   private productos: Producto[] = [];
