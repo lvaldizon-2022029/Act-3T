@@ -84,7 +84,7 @@ export class Tienda {
     }
 
     if (datos.correo !== undefined) {
-      this.validarCorreo(datos.correo);
+      this.validarCorreo(datos.correo, cliente.id);
       cliente.correo = datos.correo.trim().toLowerCase();
     }
 
@@ -206,14 +206,14 @@ export class Tienda {
     }
   }
 
-  private validarCorreo(correo: string): void {
+  private validarCorreo(correo: string, clienteIdExcluido?: number): void {
     const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!patronCorreo.test(correo.trim())) {
       throw new Error("El correo no tiene un formato válido");
     }
 
     const correoNormalizado = correo.trim().toLowerCase();
-    const existe = this.clientes.some((cliente) => cliente.correo === correoNormalizado);
+    const existe = this.clientes.some((cliente) => cliente.correo === correoNormalizado && cliente.id !== clienteIdExcluido);
     if (existe) {
       throw new Error("Ya existe un cliente con ese correo");
     }
